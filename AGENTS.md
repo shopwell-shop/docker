@@ -7,6 +7,7 @@ This repository is the independently maintained Shopwell production image projec
 - Preserve every upstream legal text verbatim in root `NOTICE`.
 - Outside `NOTICE`, do not reintroduce Shopware branding, package names, repositories, images, or Actions.
 - Publish Shopwell images only under Shopwell-controlled GHCR and Docker Hub namespaces.
+- The current Docker Hub account namespace is `shopwell8`; do not invent or publish to the unavailable `shopwell` namespace.
 - Never print registry credentials or commit them to files. Keep them in GitHub Actions secrets.
 - Do not merge or cherry-pick unrelated upstream history, copy upstream tags, or force-push.
 - Before commit, push, release, or sync completion, run:

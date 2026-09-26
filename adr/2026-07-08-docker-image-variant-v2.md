@@ -26,7 +26,7 @@ Finally, the production images are Alpine-based (except FrankenPHP, which is alr
 
 ### 1. Calendar-versioned tags with a frozen contract
 
-We adopt a calendar-based versioning scheme, following the model of [pimcore/docker](https://github.com/pimcore/docker#versioning). The scheme applies identically to both registries we publish to (`ghcr.io/shopwell-shop/*` and Docker Hub `shopwell/*`):
+We adopt a calendar-based versioning scheme, following the model of [pimcore/docker](https://github.com/pimcore/docker#versioning). The scheme applies identically to both registries we publish to (`ghcr.io/shopwell-shop/*` and Docker Hub `shopwell8/*`):
 
 - `ghcr.io/shopwell-shop/docker-base:8.3-frankenphp` — rolling tag (points to the latest supported version)
 - `ghcr.io/shopwell-shop/docker-base:8.3-frankenphp-v2026.1` — versioned tag

@@ -30,8 +30,8 @@ target "frankenphp" {
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-frankenphp",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-frankenphp"
     ] : [
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-frankenphp",
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${php}-frankenphp",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-frankenphp",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${php}-frankenphp",
 
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-frankenphp",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-frankenphp"
@@ -52,8 +52,8 @@ target "frankenphp-otel" {
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-frankenphp-otel",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-frankenphp-otel"
     ] : [
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-frankenphp-otel",
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${php}-frankenphp-otel",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-frankenphp-otel",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${php}-frankenphp-otel",
 
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-frankenphp-otel",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-frankenphp-otel"
@@ -76,8 +76,8 @@ target "fpm" {
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-fpm",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-fpm"
     ] : [
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-fpm",
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${php}-fpm",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-fpm",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${php}-fpm",
 
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-fpm",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-fpm"
@@ -98,8 +98,8 @@ target "fpm-otel" {
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-fpm-otel",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-fpm-otel"
     ] : [
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-fpm-otel",
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${php}-fpm-otel",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-fpm-otel",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${php}-fpm-otel",
 
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-fpm-otel",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-fpm-otel"
@@ -122,8 +122,8 @@ target "caddy" {
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-caddy",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-caddy"
     ] : [
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-caddy",
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${php}-caddy",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-caddy",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${php}-caddy",
 
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-caddy",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-caddy"
@@ -144,8 +144,8 @@ target "caddy-otel" {
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-caddy-otel",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-caddy-otel"
     ] : [
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-caddy-otel",
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${php}-caddy-otel",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-caddy-otel",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${php}-caddy-otel",
 
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-caddy-otel",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-caddy-otel"
@@ -188,8 +188,8 @@ target "nginx" {
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-nginx",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-nginx"
     ] : [
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-nginx",
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${php}-nginx",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-nginx",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${php}-nginx",
 
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-nginx",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-nginx"
@@ -210,8 +210,8 @@ target "nginx-otel" {
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-nginx-otel",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-nginx-otel"
     ] : [
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-nginx-otel",
-        "shopwell/docker-base${imageSuffix}:${tagPrefix}${php}-nginx-otel",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-nginx-otel",
+        "shopwell8/docker-base${imageSuffix}:${tagPrefix}${php}-nginx-otel",
 
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${substr(php, 0, 3)}-nginx-otel",
         "ghcr.io/shopwell-shop/docker-base${imageSuffix}:${tagPrefix}${php}-nginx-otel"
