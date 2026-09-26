@@ -2,17 +2,9 @@ name: Lint Dockerfile
 on:
   workflow_dispatch:
   pull_request:
-    paths:
-      - ".github/workflows/lint.yml"
-      - "fpm/Dockerfile"
-      - "caddy/Dockerfile"
   push:
     branches:
       - main
-    paths:
-      - ".github/workflows/lint.yml"
-      - "fpm/Dockerfile"
-      - "caddy/Dockerfile"
 
 jobs:
   lint:
@@ -21,6 +13,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+
+      - name: Validate Shopwell registry namespaces
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          forbidden=(
+            'shopwell/docker-base'
+            'docker.io/shopwell/'
+            'ghcr.io/shopwell8/'
+            'ghcr.io/shopwell/'
+          )
+
+          for reference in "${forbidden[@]}"; do
+            if rg --hidden \
+              --glob '!.git/**' \
+              --glob '!AGENTS.md' \
+              --glob '!NOTICE' \
+              --fixed-strings "$reference" .; then
+              echo "Forbidden container registry reference: $reference"
+              echo "Use shopwell8/* on Docker Hub or ghcr.io/shopwell-shop/* on GHCR."
+              exit 1
+            fi
+          done
 
       - name: Lint FPM
         uses: hadolint/hadolint-action@06be81baf89a55ffd0e24b8f04a4185738dd3387 # v3.5.0
