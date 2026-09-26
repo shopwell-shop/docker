@@ -40,7 +40,6 @@ jobs:
           status=$(curl --silent --show-error \
             --output /dev/null \
             --write-out '%{http_code}' \
-            --request HEAD \
             --header "Authorization: Bearer $access_token" \
             'https://hub.docker.com/v2/namespaces/shopwell8/repositories/docker-base')
 
