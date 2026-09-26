@@ -1,0 +1,10 @@
+{
+  "name": "shopwell/docker",
+  "type": "metapackage",
+  "license": "Apache-2.0",
+  "description": "Docker image for Shopwell 6 production",
+  "require": {
+    "shopwell/core": ">=6.7.0.0",
+    "shopwell/deployment-helper": "*"
+  }
+}
