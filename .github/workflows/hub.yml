@@ -14,6 +14,65 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Ensure Docker Hub repository exists
+        env:
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          if [[ "$DOCKER_HUB_USERNAME" != "shopwell8" ]]; then
+            echo "DOCKER_HUB_USERNAME must identify the shopwell8 namespace"
+            exit 1
+          fi
+
+          auth_payload=$(jq -nc \
+            --arg identifier "$DOCKER_HUB_USERNAME" \
+            --arg secret "$DOCKER_HUB_PASSWORD" \
+            '{identifier: $identifier, secret: $secret}')
+          access_token=$(curl --fail --silent --show-error \
+            --request POST \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --data "$auth_payload" \
+            'https://hub.docker.com/v2/auth/token' | jq -er '.access_token')
+
+          status=$(curl --silent --show-error \
+            --output /dev/null \
+            --write-out '%{http_code}' \
+            --request HEAD \
+            --header "Authorization: Bearer $access_token" \
+            'https://hub.docker.com/v2/namespaces/shopwell8/repositories/docker-base')
+
+          case "$status" in
+            200)
+              echo "Docker Hub repository shopwell8/docker-base already exists"
+              ;;
+            404)
+              repository_payload=$(jq -nc '{
+                namespace: "shopwell8",
+                name: "docker-base",
+                description: "Shopwell production base images",
+                full_description: "Shopwell production base images published from github.com/shopwell-shop/docker.",
+                is_private: false,
+                registry: "docker.io"
+              }')
+              curl --fail --silent --show-error \
+                --request POST \
+                --header "Authorization: Bearer $access_token" \
+                --header 'Accept: application/json' \
+                --header 'Content-Type: application/json' \
+                --data "$repository_payload" \
+                'https://hub.docker.com/v2/namespaces/shopwell8/repositories' \
+                > /dev/null
+              echo "Created public Docker Hub repository shopwell8/docker-base"
+              ;;
+            *)
+              echo "Docker Hub repository check failed with HTTP $status"
+              exit 1
+              ;;
+          esac
+
       - name: Docker Hub Description
         uses: peter-evans/dockerhub-description@v5
         with:

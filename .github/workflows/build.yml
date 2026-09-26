@@ -210,7 +210,7 @@ jobs:
           files: |
             docker-bake.hcl
             fpm/**
-            ${ matrix.webserver }/**
+            ${{ matrix.webserver }}/**
             dev/**
 
       - name: Build
@@ -257,9 +257,9 @@ jobs:
         id: image-tag
         run: |
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "IMAGE_TAG=ghcr.io/shopwell-shop/docker-dev-ci-test:${{ github.event.number }}-php8.4-node24-caddy" >> $GITHUB_OUTPUT
+            echo "IMAGE_TAG=ghcr.io/shopwell-shop/docker-dev-ci-test:${{ github.event.number }}-php8.4-node24-caddy" >> "$GITHUB_OUTPUT"
           else
-            echo "IMAGE_TAG=ghcr.io/shopwell-shop/docker-dev:php8.4-node24-caddy" >> $GITHUB_OUTPUT
+            echo "IMAGE_TAG=ghcr.io/shopwell-shop/docker-dev:php8.4-node24-caddy" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Pull image
@@ -318,14 +318,14 @@ jobs:
           attempt_counter=0
           max_attempts=5
 
-          until $(curl --output /dev/null --silent --head --fail localhost:8000/admin); do
-              if [ ${attempt_counter} -eq ${max_attempts} ];then
+          until curl --output /dev/null --silent --head --fail localhost:8000/admin; do
+              if [ "$attempt_counter" -eq "$max_attempts" ]; then
                 echo "Max attempts reached"
                 exit 1
               fi
 
               printf '.'
-              attempt_counter=$(($attempt_counter+1))
+              attempt_counter=$((attempt_counter + 1))
               sleep 5
           done
 

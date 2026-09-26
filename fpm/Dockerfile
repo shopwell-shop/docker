@@ -2,14 +2,18 @@
 
 FROM base AS amqpinstall
 
+WORKDIR /tmp/php-amqp
+
 RUN <<EOF
     set -e
 
+    # PHPIZE_DEPS is intentionally expanded into Alpine package arguments.
+    # shellcheck disable=SC2086
     apk add --no-cache $PHPIZE_DEPS git patch rabbitmq-c-dev curl
-    git clone https://github.com/php-amqp/php-amqp /tmp/php-amqp
-    cd /tmp/php-amqp
+    git clone https://github.com/php-amqp/php-amqp .
     git reset --hard 3618db5f781aa3d371b630c666bc90845d7c77d4
-    curl -L https://patch-diff.githubusercontent.com/raw/php-amqp/php-amqp/pull/595.patch | patch -p1
+    curl -L -o /tmp/php-amqp-595.patch https://patch-diff.githubusercontent.com/raw/php-amqp/php-amqp/pull/595.patch
+    patch -p1 < /tmp/php-amqp-595.patch
     phpize
     ./configure
     make -j"$(nproc)"
