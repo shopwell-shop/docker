@@ -1,5 +1,8 @@
 issuer: https://token.actions.githubusercontent.com
-subject: repo:shopwell-shop/docker:ref:refs/heads/main
+# Repositories created after 2026-07-15 carry immutable OIDC subjects with the
+# numeric org and repo IDs: repo:shopwell-shop@329940059/docker@1389148247:<context>.
+# The ID groups stay optional so repositories without them keep matching.
+subject_pattern: repo:shopwell-shop(@329940059)?/docker(@1389148247)?:ref:refs/heads/main
 
 permissions:
   contents: write
