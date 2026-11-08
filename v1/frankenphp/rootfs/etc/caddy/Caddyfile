@@ -1,0 +1,46 @@
+{
+	skip_install_trust 
+
+	{$CADDY_GLOBAL_OPTIONS}
+
+	frankenphp {
+		{$FRANKENPHP_CONFIG}
+	}
+}
+
+{$CADDY_EXTRA_CONFIG}
+
+:8000 {
+	root * /var/www/html/public
+	@staticDocuments {
+		file
+		path_regexp staticDocuments (?i)([.]svg$|^/(media|thumbnail)/.*[.]html$)
+	}
+	header @staticDocuments Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
+
+	encode zstd gzip
+
+	log
+
+	@theme path /theme/*
+	@phpRoute {
+		not path /theme/* /media/* /thumbnail/* /bundles/*
+		not file {path}
+	}
+
+	rewrite @phpRoute index.php
+
+	@frontController path index.php
+	php @frontController
+
+	handle @theme {
+		@theme_file file
+		handle @theme_file {
+			file_server
+		}
+		respond 410
+	}
+	file_server {
+		hide *.php
+	}
+}
