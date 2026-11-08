@@ -12,7 +12,7 @@ permissions:
 jobs:
   scan:
     name: 'Image Scan (PHP: ${{ matrix.php-version }}, Variant: ${{ matrix.variant.name }})'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     strategy:
       fail-fast: false
       matrix:
@@ -23,21 +23,21 @@ jobs:
           - '8.5'
         variant:
           - name: fpm
-            dockerfile: fpm/Dockerfile
+            dockerfile: v1/fpm/Dockerfile
           - name: fpm-otel
-            dockerfile: fpm-otel/Dockerfile
+            dockerfile: v1/fpm/otel/Dockerfile
           - name: caddy
-            dockerfile: caddy/Dockerfile
+            dockerfile: v1/fpm/caddy/Dockerfile
           - name: caddy-otel
-            dockerfile: caddy/Dockerfile
+            dockerfile: v1/fpm/caddy/Dockerfile
           - name: nginx
-            dockerfile: nginx/Dockerfile
+            dockerfile: v1/fpm/nginx/Dockerfile
           - name: nginx-otel
-            dockerfile: nginx/Dockerfile
+            dockerfile: v1/fpm/nginx/Dockerfile
           - name: frankenphp
-            dockerfile: frankenphp/Dockerfile
+            dockerfile: v1/frankenphp/Dockerfile
           - name: frankenphp-otel
-            dockerfile: frankenphp-otel/Dockerfile
+            dockerfile: v1/frankenphp/otel/Dockerfile
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -57,7 +57,7 @@ jobs:
 
       - name: Upload SARIF file
         if: ${{ steps.scan.outputs.sarif != '' }}
-        uses: github/codeql-action/upload-sarif@v4.38.1
+        uses: github/codeql-action/upload-sarif@v4.39.1
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
           category: ${{ matrix.php-version }}-${{ matrix.variant.name }}

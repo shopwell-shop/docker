@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   update-php-matrix:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Generate GitHub token via octo-sts
         id: generate-token
@@ -27,7 +27,7 @@ jobs:
           token: ${{ steps.generate-token.outputs.token }}
 
       - name: Run PHP matrix update script
-        run: node update-php-matrix.mjs
+        run: node scripts/update-php-matrix.mjs
 
       - name: Check for changes
         id: changes
@@ -50,13 +50,13 @@ jobs:
           title: 'chore: update PHP matrix to latest patch versions'
           body: |
             This PR automatically updates the PHP matrix versions to the latest patch releases.
-
-            The following matrices have been updated:
-            - `phpMatrix`: All supported PHP versions including 8.1
-            - `frankenphpMatrix`: All supported PHP versions excluding 8.1
-
+            
+            The family-specific Bake files have been updated:
+            - `v1/fpm/docker-bake.hcl`: Supported PHP patch versions
+            - `v1/frankenphp/docker-bake.hcl`: Supported FrankenPHP patch versions
+            
             Changes were detected by the automated PHP matrix update workflow.
-
+            
             🤖 This PR was created automatically by the `update-php-matrix` GitHub Action.
           branch: update-php-matrix
           delete-branch: true
