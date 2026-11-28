@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-26.04
     steps:
       - name: Cleanup GHCR
-        uses: dataaxiom/ghcr-cleanup-action@d52806a0dc70b430571a37da1fde39733ffd640f # ratchet:dataaxiom/ghcr-cleanup-action@v1
+        uses: dataaxiom/ghcr-cleanup-action@ac45a8c04b1eb4b27974ca79a0a74f344c93664b # ratchet:dataaxiom/ghcr-cleanup-action@v1
         with:
           packages: docker-base-ci-test,docker-dev-ci-test
           older-than: 1 day
